@@ -1,0 +1,7 @@
+---
+    - hosts: localhost
+    
+      vars:
+        deployed_product: "release-promotion-sample"
+        deployed_app: "release-promotion-sample"
+        deployed_name: "release-promotion-sample"
