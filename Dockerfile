@@ -1,9 +1,9 @@
-FROM docker-live.artifactory.dev.intapp.com/dockerhub/gradle:jdk8 as builder
+FROM gradle:jdk8 as builder
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
 RUN gradle build --info
 
-FROM docker-live.artifactory.dev.intapp.com/dockerhub/openjdk:8-jre-slim as app
+FROM openjdk:8-jre-slim as app
 EXPOSE 8080
 COPY --from=builder /home/gradle/src/build/libs/*.jar /app/app.jar
 WORKDIR /app
