@@ -40,9 +40,3 @@ jobs:
 
       # run tests!
       - run: gradle test
-      
-      - run:
-          name: Build application Docker image
-          command: |
-            docker build -t sergeydz/java-sample-service:circlecd .
-
