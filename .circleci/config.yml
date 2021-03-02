@@ -4,6 +4,13 @@
 #
 version: 2.1
 jobs:
+  
+  clone: 
+    docker: 
+      - image: circleci/openjdk:8-jdk
+    steps: 
+      - checkout
+
   build:
     docker:
       # specify the version you desire here
@@ -16,8 +23,6 @@ jobs:
       TERM: dumb
 
     steps:
-      - checkout
-
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "build.gradle" }}
@@ -82,9 +87,19 @@ docker:
 
 # Orchestrate our job run sequence
 workflows:
+  version: 2
   pipeline:
     jobs:
-      - build
-      - helm
+      - clone
+      - build:
+          requires:
+            - clone
+      - helm:
+          requires:
+            - clone
+      - docker:
+          requires:
+            - clone
+            - build
 
   
