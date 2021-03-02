@@ -47,7 +47,7 @@ jobs:
     steps:
       - run: helm package helm/release-promotion-sample
 
-docker:
+  docker:
     working_directory: ~/repo
     docker:
       - image: docker:17.05.0-ce-git
