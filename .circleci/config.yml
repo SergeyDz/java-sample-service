@@ -33,7 +33,7 @@ jobs:
     working_directory: ~/repo
     steps:
       - attach_workspace:
-          at: ~/
+          at: ~/repo
       - run: ls -l
       - restore_cache:
           keys:
