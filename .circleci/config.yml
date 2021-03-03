@@ -17,7 +17,8 @@ jobs:
             paths:
               - helm/
               - src/
-              - biuld.gradle
+              - build.gradle
+              - Dockerfile
       
 
   build:
@@ -28,7 +29,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
       TERM: dumb
-      
+
     working_directory: ~/repo
     steps:
       - attach_workspace:
@@ -53,12 +54,16 @@ jobs:
       - image: alpine/helm
 
     steps:
+      - attach_workspace:
+          at: ~/
       - run: helm package helm/release-promotion-sample
 
   docker:
     docker:
       - image: docker:17.05.0-ce-git
     steps:
+      - attach_workspace:
+          at: ~/
       - setup_remote_docker
       - run:
           name: Install dependencies
