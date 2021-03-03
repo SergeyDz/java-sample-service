@@ -9,7 +9,13 @@ jobs:
     docker: 
       - image: circleci/openjdk:8-jdk
     steps: 
-      - checkout
+        - checkout
+        - run: rm -rf .git
+        - persist_to_workspace:
+            root: ~/
+            paths:
+              - /
+      
 
   build:
     docker:
@@ -21,6 +27,8 @@ jobs:
       TERM: dumb
 
     steps:
+      - attach_workspace:
+          at: ~/
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "build.gradle" }}
