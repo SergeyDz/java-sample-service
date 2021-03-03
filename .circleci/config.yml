@@ -13,7 +13,7 @@ jobs:
         - checkout
         - run: rm -rf .git
         - persist_to_workspace:
-            root: ~/
+            root: ~/repo
             paths:
               - helm/
               - src/
@@ -34,6 +34,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
+      - run: ls -l
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "build.gradle" }}
