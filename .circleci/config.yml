@@ -8,7 +8,6 @@ jobs:
   clone: 
     docker: 
       - image: circleci/openjdk:8-jdk
-    working_directory: ~/repo
     steps: 
       - checkout
 
@@ -16,8 +15,6 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/openjdk:8-jdk
-
-    working_directory: ~/repo
 
     environment:
       JVM_OPTS: -Xmx3200m
@@ -43,13 +40,10 @@ jobs:
       # specify the version you desire here
       - image: alpine/helm
 
-    working_directory: ~/repo
-
     steps:
       - run: helm package helm/release-promotion-sample
 
   docker:
-    working_directory: ~/repo
     docker:
       - image: docker:17.05.0-ce-git
     steps:
