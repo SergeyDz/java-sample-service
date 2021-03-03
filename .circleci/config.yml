@@ -13,7 +13,7 @@ jobs:
         - checkout
         - run: rm -rf .git
         - persist_to_workspace:
-            root: ~/repo
+            root: ~/
             paths:
               - helm/
               - src/
