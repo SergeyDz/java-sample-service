@@ -14,7 +14,9 @@ jobs:
         - persist_to_workspace:
             root: ~/
             paths:
-              - /
+              - /helm
+              - /src
+              - /biuld.gradle
       
 
   build:
