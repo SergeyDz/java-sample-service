@@ -52,7 +52,7 @@ jobs:
     docker:
       # specify the version you desire here
       - image: alpine/helm
-
+    working_directory: ~/repo
     steps:
       - attach_workspace:
           at: ~/
