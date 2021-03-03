@@ -8,15 +8,16 @@ jobs:
   clone: 
     docker: 
       - image: circleci/openjdk:8-jdk
+    working_directory: ~/repo
     steps: 
         - checkout
         - run: rm -rf .git
         - persist_to_workspace:
-            root: ~/
+            root: ~/repo
             paths:
-              - /helm
-              - /src
-              - /biuld.gradle
+              - helm/
+              - src/
+              - biuld.gradle
       
 
   build:
@@ -27,7 +28,8 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
       TERM: dumb
-
+      
+    working_directory: ~/repo
     steps:
       - attach_workspace:
           at: ~/
